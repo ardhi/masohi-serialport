@@ -7,7 +7,8 @@ async function factory (pkgName) {
       this.alias = 'sp'
       this.dependencies = ['masohi']
       this.config = {
-        connections: []
+        connections: [],
+        stations: []
       }
       this.events = {
         port: ['error', 'open', 'close'],
@@ -39,6 +40,11 @@ async function factory (pkgName) {
         if (!c.instance) continue
         await c.instance.port.close()
       }
+    }
+
+    getStationData = ({ payload, source: connection }) => {
+      const { find } = this.lib._
+      return find(this.config.stations, { connection })
     }
   }
 }
