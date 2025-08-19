@@ -1,3 +1,4 @@
 {
-  "unknownParser%s": "Unknown parser '%s'"
+  "unknownParser%s": "Unknown parser '%s'",
+  "masohiSerialport": "Serial Port"
 }
