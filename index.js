@@ -1,11 +1,12 @@
 async function factory (pkgName) {
   const me = this
 
-  return class MasohiSerialport extends this.lib.Plugin {
+  class MasohiSerialport extends this.lib.Plugin {
+    static alias = 'sp'
+    static dependencies = ['masohi']
+
     constructor () {
       super(pkgName, me.app)
-      this.alias = 'sp'
-      this.dependencies = ['masohi']
       this.config = {
         connections: [],
         stations: []
@@ -47,6 +48,8 @@ async function factory (pkgName) {
       return find(this.config.stations, { connection })
     }
   }
+
+  return MasohiSerialport
 }
 
 export default factory
