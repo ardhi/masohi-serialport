@@ -2,7 +2,7 @@ import * as sp from 'serialport'
 const { SerialPort } = sp
 
 async function afterBootComplete () {
-  const { omit } = this.lib._
+  const { omit } = this.app.lib._
   const { runHook } = this.app.bajo
 
   for (const c of this.connections) {

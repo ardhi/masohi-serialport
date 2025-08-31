@@ -1,7 +1,7 @@
 async function factory (pkgName) {
   const me = this
 
-  class MasohiSerialport extends this.lib.Plugin {
+  class MasohiSerialport extends this.app.pluginClass.base {
     static alias = 'sp'
     static dependencies = ['masohi']
 
@@ -24,7 +24,7 @@ async function factory (pkgName) {
       const { buildCollections } = this.app.bajo
 
       const handler = async ({ item }) => {
-        const { isString, has } = this.lib._
+        const { isString, has } = this.app.lib._
         if (!has(item, 'path')) throw this.error('connMustHave%s', 'path')
         item.baudRate = item.baudRate ?? 38400
         if (isString(item.parser)) item.parser = { name: item.parser }
@@ -44,7 +44,7 @@ async function factory (pkgName) {
     }
 
     getStationData = ({ payload, source: connection }) => {
-      const { find } = this.lib._
+      const { find } = this.app.lib._
       return find(this.config.stations, { connection })
     }
   }
