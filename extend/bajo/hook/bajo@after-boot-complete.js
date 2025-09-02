@@ -11,15 +11,15 @@ async function afterBootComplete () {
     const optsParser = omit(c.parser, ['name'])
     const Parser = sp.default[c.parser.name]
     c.instance.parser = c.instance.port.pipe(new Parser(optsParser))
-    const source = `${this.name}.${c.name}` // <ns>.<connName>
+    const source = `${this.ns}.${c.name}` // <ns>.<connName>
     for (const k in this.events) {
       for (const evt of this.events[k]) {
         c.instance[k].on(evt, async (msg) => {
           let payload = evt === 'error' ? undefined : msg
           const error = evt === 'error' ? msg : undefined
           if (payload && c.payloadType === 'json') payload = JSON.parse(payload)
-          await runHook(`${this.name}:${evt}`, { source, payload, error }, c)
-          await runHook(`${this.name}.${c.name}:${evt}`, { source, payload, error })
+          await runHook(`${this.ns}:${evt}`, { source, payload, error }, c)
+          await runHook(`${this.ns}.${c.name}:${evt}`, { source, payload, error })
         })
       }
     }

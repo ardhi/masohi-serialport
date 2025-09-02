@@ -32,7 +32,7 @@ async function factory (pkgName) {
         if (!this.parsers.includes(item.parser.name)) throw this.error('unknownParser%s', item.parser.name)
       }
 
-      this.connections = await buildCollections({ ns: this.name, handler, dupChecks: ['name', 'path'], container: 'connections' })
+      this.connections = await buildCollections({ ns: this.ns, handler, dupChecks: ['name', 'path'], container: 'connections' })
     }
 
     exit = async () => {
