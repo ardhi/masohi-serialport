@@ -13,9 +13,6 @@ async function factory (pkgName) {
    * @class
    */
   class MasohiSerialport extends this.app.baseClass.Base {
-    static alias = 'sp'
-    static dependencies = ['masohi']
-
     constructor () {
       super(pkgName, me.app)
       this.config = {
